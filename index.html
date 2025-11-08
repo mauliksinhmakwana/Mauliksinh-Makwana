@@ -14,7 +14,7 @@
     <script src="https://elfsightcdn.com/platform.js" async></script>
 
     <style>
-        /* ALL EXISTING STYLES REMAIN THE SAME */
+        /* PERFORMANCE OPTIMIZATIONS */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -52,8 +52,13 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            /* Performance optimizations */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeSpeed;
         }
         
+        /* Simplified wave background for performance */
         .wave-background {
             position: fixed;
             top: 0;
@@ -62,33 +67,8 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
-        }
-        
-        .wave-background::before,
-        .wave-background::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            min-width: 3000px;
-            min-height: 3000px;
-            width: 150vw;
-            height: 150vw;
-            border-radius: 48% 52% 47% 53% / 42% 45% 55% 58%;
-            background-color: var(--heading-color);
-            animation: wave-rotate 40s linear infinite;
-            opacity: 0.02;
-        }
-
-        .wave-background::before {
-            bottom: 15vh;
-            transform: translateX(-50%);
-        }
-
-        .wave-background::after {
-            bottom: 12vh;
             opacity: 0.03;
-            transform: translateX(-50%);
-            animation-duration: 35s;
+            background: radial-gradient(circle at 50% 50%, var(--heading-color), transparent 70%);
         }
 
         .header {
@@ -96,31 +76,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background-color: rgba(16, 16, 16, 0.9);
+            background-color: rgba(16, 16, 16, 0.95);
             backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 10;
             overflow: visible;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -75%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.05),
-                transparent
-            );
-            transform: skewX(-25deg);
-            animation: liquid-sheen 10s infinite ease-in-out;
-            animation-delay: 2s;
-            z-index: -1;
         }
 
         .header-left {
@@ -145,17 +107,6 @@
             object-fit: cover;
             border-radius: 50%;
             display: block;
-        }
-
-        .header-logo::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            right: 0; bottom: 0;
-            border-radius: 50%;
-            background: var(--accent-gradient);
-            z-index: -1;
-            animation: gradient-spin 4s linear infinite;
         }
 
         .header-name {
@@ -299,17 +250,6 @@
             padding: 4px;
             background-color: var(--primary-bg);
         }
-        
-        .profile-img-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            right: 0; bottom: 0;
-            border-radius: 50%;
-            background: var(--accent-gradient);
-            z-index: -1;
-            animation: gradient-spin 4s linear infinite;
-        }
 
         .profile-img {
             width: 100%;
@@ -387,11 +327,6 @@
             justify-content: center;
         }
         
-        /* --- LinkedIn Feed Spacing --- */
-        .linkedin-feed {
-            margin-top: 30px;
-        }
-
         .social-links {
             margin-top: auto;
             display: flex;
@@ -623,13 +558,8 @@
             position: relative;
             max-height: 85vh;
             overflow-y: auto;
-        }
-        
-        #share-modal .modal-content {
-            max-width: 95%;
-        }
-        #blog-modal .modal-content {
-            max-width: 95%;
+            /* Performance optimization */
+            will-change: transform;
         }
         
         .modal-overlay.show-modal .modal-content {
@@ -1022,7 +952,7 @@
             }
             
             .namaste-section h2 {
-                font-size: 4em; /* Increased font size for mobile */
+                font-size: 3.5em;
                 letter-spacing: -0.5px;
                 text-align: center;
             }
@@ -1052,7 +982,7 @@
                 right: 0;
             }
             
-            /* MOBILE MODAL FIXES - ADDED */
+            /* MOBILE MODAL FIXES - IMPROVED */
             .modal-overlay {
                 padding: 15px;
                 align-items: flex-start;
@@ -1061,10 +991,19 @@
             
             .modal-content {
                 max-height: calc(100vh - 120px);
-                max-width: 100%;
+                max-width: 95%;
                 padding: 20px;
                 overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
+                /* Performance optimization */
+                transform: translateY(20px);
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                opacity: 0;
+            }
+            
+            .modal-overlay.show-modal .modal-content {
+                transform: translateY(0);
+                opacity: 1;
             }
             
             .modal-title {
@@ -1117,7 +1056,7 @@
             }
             
             .namaste-section h2 {
-                font-size: 3.5em; /* Larger on small mobile */
+                font-size: 3em;
             }
             
             .profile-quote {
@@ -1131,6 +1070,7 @@
             /* Mobile Modal Fixes */
             .modal-content {
                 padding: 18px;
+                max-width: 92%;
             }
             
             .modal-title {
@@ -1162,7 +1102,7 @@
             }
             
             .namaste-section h2 {
-                font-size: 3em; /* Adjusted for very small screens */
+                font-size: 2.5em;
             }
             
             .profile-name {
@@ -1176,6 +1116,7 @@
             /* Mobile Modal Fixes */
             .modal-content {
                 padding: 15px;
+                max-width: 90%;
             }
             
             .modal-title {
@@ -1198,7 +1139,7 @@
         }
         /* --- RESPONSIVE FIXES END --- */
         
-        /* Animation Keyframes */
+        /* Animation Keyframes - Optimized */
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
@@ -1208,22 +1149,6 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes gradient-spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes liquid-sheen {
-            0% { left: -75%; }
-            40% { left: 125%; }
-            100% { left: 125%; }
-        }
-        
-        @keyframes wave-rotate {
-            0% { transform: translateX(-50%) rotate(0deg); }
-            100% { transform: translateX(-50%) rotate(360deg); }
         }
     </style>
 </head>
@@ -1484,7 +1409,7 @@
             const shareModal = document.getElementById('share-modal');
             const closeShareBtn = document.getElementById('modal-close-share');
             
-            // UPDATED: Blog Modal
+            // Blog Modal
             const blogBtn = document.getElementById('blog-btn');
             const blogModal = document.getElementById('blog-modal');
             const closeBlogBtn = document.getElementById('modal-close-blog');
@@ -1494,14 +1419,22 @@
             const mobileNav = document.getElementById('mobile-nav');
             const mobileContact = document.getElementById('mobile-contact');
             const mobileShare = document.getElementById('mobile-share');
-            const mobileBlog = document.getElementById('mobile-blog'); // UPDATED
+            const mobileBlog = document.getElementById('mobile-blog');
 
             const openModal = (modal) => {
-                if (modal) modal.classList.add('show-modal');
+                if (modal) {
+                    modal.classList.add('show-modal');
+                    // Prevent body scroll when modal is open
+                    document.body.style.overflow = 'hidden';
+                }
             };
 
             const closeModal = (modal) => {
-                if (modal) modal.classList.remove('show-modal');
+                if (modal) {
+                    modal.classList.remove('show-modal');
+                    // Restore body scroll
+                    document.body.style.overflow = '';
+                }
             };
 
             // Open/Close Mobile Menu
@@ -1547,7 +1480,7 @@
                 closeShareBtn.addEventListener('click', () => closeModal(shareModal));
             }
             
-            // UPDATED: Blog Modal Listeners
+            // Blog Modal Listeners
             if (blogBtn) {
                 blogBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -1566,7 +1499,7 @@
             }
 
             // Close modal by clicking overlay
-            [contactModal, shareModal, blogModal].forEach(modal => { // Added blogModal
+            [contactModal, shareModal, blogModal].forEach(modal => {
                 if (modal) {
                     modal.addEventListener('click', (e) => {
                         if (e.target === modal) {

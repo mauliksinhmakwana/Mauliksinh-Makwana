@@ -1051,6 +1051,55 @@
             .profile-quote::after {
                 right: 0;
             }
+            
+            /* MOBILE MODAL FIXES - ADDED */
+            .modal-overlay {
+                padding: 15px;
+                align-items: flex-start;
+                padding-top: 60px;
+            }
+            
+            .modal-content {
+                max-height: calc(100vh - 120px);
+                max-width: 100%;
+                padding: 20px;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .modal-title {
+                font-size: 1.6em;
+                margin-bottom: 15px;
+                padding-right: 40px;
+            }
+            
+            .modal-wrapper {
+                gap: 15px;
+            }
+            
+            .contact-form input,
+            .contact-form textarea {
+                padding: 12px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .share-options {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            
+            .share-icon {
+                padding: 10px 5px;
+                font-size: 1.3em;
+            }
+            
+            .share-icon span {
+                font-size: 0.55em;
+            }
+            
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
         }
         
         /* Small Mobile */

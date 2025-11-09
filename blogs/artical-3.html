@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post: The Art of Consistency - MAKWANA MAULIK</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+
+    <style>
+        /* PERFORMANCE OPTIMIZATIONS */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color-1: #ffffff;
+            --accent-color-2: #bbbbbb;
+            --accent-solid: var(--accent-color-1);
+            --accent-gradient: linear-gradient(90deg, 
+                var(--accent-color-1), 
+                var(--accent-color-2)
+            );
+            --border-color: #333333;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --light-shade: #b0b0b0;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.15);
+            --glass-blur: blur(10px);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            /* Performance optimizations */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeSpeed;
+        }
+        
+        /* Simplified wave background for performance */
+        .wave-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.03;
+            background: radial-gradient(circle at 50% 50%, var(--heading-color), transparent 70%);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: rgba(16, 16, 16, 0.95);
+            backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            overflow: visible;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            position: relative;
+            padding: 3px;
+            background-color: var(--primary-bg);
+        }
+        
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .header-name {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--heading-color);
+            letter-spacing: 0.5px;
+            white-space: nowrap; 
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .header-nav .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        .header-nav .nav-link:hover {
+            color: var(--primary-bg);
+            background: var(--accent-solid);
+            border-color: var(--accent-solid);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        
+        .header-nav .icon-btn {
+            font-size: 1.1em;
+            padding: 8px 12px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--heading-color);
+            font-size: 1.8em;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0 5px;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 5%;
+            width: 250px;
+            background-color: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(15px);
+            border: var(--glass-border);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1000;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+        }
+        
+        .mobile-nav.active {
+            display: block;
+            max-height: 300px; /* Increased max-height for new button */
+            opacity: 1;
+        }
+        
+        .mobile-nav a {
+            display: block;
+            color: var(--heading-color);
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .mobile-nav a:hover {
+            background-color: var(--accent-solid);
+            color: var(--primary-bg);
+        }
+        
+        .mobile-nav a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 5%;
+            gap: 30px;
+            width: 100%;
+        }
+
+        /* --- ALL ORIGINAL PROFILE/NAMASTE STYLES REMOVED --- */
+        /* --- AS THEY ARE REPLACED BY THE BLOG POST STYLES --- */
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            color: var(--text-color);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-gradient);
+            background-size: 200% 200%;
+            color: var(--primary-bg);
+            border-color: var(--accent-color-1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-solid);
+            color: var(--primary-bg);
+            border-color: var(--accent-solid);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--secondary-bg);
+            padding: 30px 5%;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer .email {
+            font-size: 1.8em;
+            font-weight: 700;
+            display: block;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            word-break: break-all;
+            color: var(--light-shade);
+            order: 3;
+        }
+        
+        .footer .email:hover {
+            color: var(--accent-solid);
+        }
+
+        .footer .details {
+            font-size: 0.9em;
+            color: var(--light-shade);
+            order: 1;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            order: 2;
+        }
+        
+        .footer-social a {
+            font-size: 1.8em;
+            color: var(--light-shade);
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        
+        .footer-social a:hover {
+            color: var(--accent-solid);
+            transform: translateY(-3px);
+        }
+        
+        /* --- MOBILE OPTIMIZED MODAL STYLES --- */
+        /* (Kept for header/footer functionality) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 10px;
+        }
+        
+        .modal-overlay.show-modal {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 95%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            /* Performance optimization */
+            will-change: transform;
+        }
+        
+        .modal-overlay.show-modal .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 1.5em;
+            color: var(--light-shade);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .modal-close-btn:hover {
+            color: var(--heading-color);
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            padding-right: 40px;
+        }
+        
+        .modal-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .modal-contact-info {
+            list-style: none;
+            padding: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 0;
+        }
+        
+        .contact-form {
+            width: 100%;
+        }
+        
+        .modal-contact-info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        .modal-contact-info li i {
+            width: 25px;
+            text-align: center;
+            margin-right: 15px;
+            color: var(--accent-solid);
+            font-size: 1.1em;
+        }
+        .modal-contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .modal-contact-info a:hover {
+            color: var(--accent-solid);
+        }
+        
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            flex-basis: 100%;
+        }
+        
+        .contact-form label {
+            font-size: 0.9em;
+            font-weight: 500;
+            color: var(--light-shade);
+            margin-bottom: 8px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.2s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-image: var(--accent-gradient) 1;
+        }
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--light-shade);
+            opacity: 0.7;
+        }
+        
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .contact-form .btn {
+            background: var(--accent-gradient);
+            background-size: 200% 200%;
+            color: var(--primary-bg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px 20px;
+            font-size: 1em;
+        }
+        
+        .contact-form .btn:hover {
+            background-position: 100% 0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Share Modal Styles - Mobile Optimized */
+        .share-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .share-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.4em;
+            padding: 12px 8px;
+            border-radius: 10px;
+            transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .share-icon:hover {
+            background-color: var(--secondary-bg);
+            transform: translateY(-3px);
+            color: var(--accent-solid);
+        }
+        
+        .share-icon span {
+            font-size: 0.6em;
+            font-weight: 500;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        #copy-link-btn {
+            width: 100%;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            color: var(--light-shade);
+            transition: background-color 0.2s ease, color 0.2s ease;
+            padding: 14px 20px;
+            font-size: 1em;
+        }
+        
+        #copy-link-btn:hover {
+            background-color: var(--accent-solid);
+            color: var(--primary-bg);
+            border-color: var(--accent-solid);
+        }
+
+        #copy-link-btn .fa-check {
+            color: #28a745;
+            margin-left: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        #copy-link-btn.copied .fa-check {
+            opacity: 1;
+        }
+        #copy-link-btn.copied .copy-text {
+            display: none;
+        }
+        #copy-link-btn .copied-text {
+            display: none;
+        }
+        #copy-link-btn.copied .copied-text {
+            display: inline-block;
+        }
+        
+        /* Blog Styles - Mobile Optimized */
+        .blog-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .blog-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .blog-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-content h4 {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .blog-content p {
+            font-size: 0.95em;
+            color: var(--light-shade);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+
+        /* --- NEW BLOG POST PAGE STYLES --- */
+        
+        /* We override .main-content to be single-column on desktop for the blog post */
+        .main-content {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 30px 5%;
+        }
+        
+        .blog-post-container {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 900px; /* Optimal width for reading text */
+            margin: 0 auto; /* Center the container */
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .blog-post-container h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em; /* Large, impactful title */
+            font-weight: 800;
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .blog-post-container h1 .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradient-flow 5s ease infinite;
+        }
+        
+        .blog-meta {
+            font-size: 0.9em;
+            color: var(--light-shade);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .blog-header-image {
+            width: 100%;
+            height: auto;
+            max-height: 450px; /* Control the max height */
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: var(--glass-border);
+        }
+        
+        .blog-body {
+            font-size: 1.1em; /* Comfortable reading size */
+            line-height: 1.8; /* Generous line spacing */
+            font-weight: 300;
+            color: var(--text-color);
+        }
+        
+        .blog-body p {
+            margin-bottom: 20px;
+        }
+        
+        .blog-body h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.8em;
+            color: var(--heading-color);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+        
+        .blog-body blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            font-style: italic;
+            color: var(--accent-solid);
+            padding-left: 25px;
+            margin: 30px 0;
+            border-left: 4px solid var(--accent-solid);
+            line-height: 1.6;
+        }
+        
+        .blog-body ul, .blog-body ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .blog-body li {
+            margin-bottom: 10px;
+        }
+        
+        .blog-body a {
+            color: var(--accent-solid);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-solid);
+            transition: all 0.2s ease;
+        }
+        
+        .blog-body a:hover {
+            color: var(--primary-bg);
+            background-color: var(--accent-solid);
+            border-bottom: 1px solid var(--accent-solid);
+        }
+
+        /* --- NEW: Blog Post Footer (Inspired by Code 2) --- */
+        .blog-post-footer {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-to-blog {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95em;
+        }
+
+        .back-to-blog:hover {
+            color: var(--accent-solid);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .share-btn:hover {
+            background: var(--accent-solid);
+            color: var(--primary-bg);
+            transform: translateY(-2px);
+        }
+
+
+        /* --- RESPONSIVE FIXES START --- */
+        
+        /* Desktop */
+        @media (min-width: 900px) {
+            /* This section is for the main page, but we keep it for modal consistency */
+            .main-content {
+                /* On the blog post page, we WANT it to be column */
+                flex-direction: column; 
+                align-items: center;
+                padding: 60px 5%;
+            }
+            /* Remove sticky profile card styling */
+            .profile-card {
+                position: static; 
+            }
+            .namaste-section {
+                margin-top: 0;
+            }
+
+            .footer {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .footer-left {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                order: 1;
+            }
+            .footer .details {
+                text-align: left;
+                order: 1;
+            }
+            .footer-social {
+                justify-content: flex-start;
+                order: 2;
+            }
+            .footer .email {
+                text-align: right;
+                font-size: 2em;
+                order: 2;
+                margin-bottom: 0;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            /* Desktop Modal Styles */
+            .modal-content {
+                max-width: 700px;
+                padding: 30px;
+            }
+            
+            #share-modal .modal-content {
+                max-width: 500px;
+            }
+            #blog-modal .modal-content {
+                max-width: 900px;
+            }
+            
+            .modal-wrapper {
+                flex-direction: row;
+                gap: 30px;
+            }
+            
+            .modal-contact-info {
+                border-right: 1px solid var(--border-color);
+                border-bottom: none;
+                padding-right: 30px;
+                padding-bottom: 0;
+                margin-bottom: 0;
+                flex-basis: 40%;
+            }
+            
+            .contact-form {
+                flex-basis: 60%;
+            }
+            
+            .form-row {
+                flex-direction: row;
+            }
+            
+            .share-options {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .blog-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Tablet and Mobile */
+        @media (max-width: 899px) {
+            .header {
+                padding: 12px 5%;
+            }
+            
+            .header-nav .nav-link {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+
+            .main-content {
+                gap: 30px;
+                align-items: center; 
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .footer .email {
+                font-size: 1.5em;
+            }
+            
+            /* MOBILE MODAL FIXES - IMPROVED */
+            .modal-overlay {
+                padding: 15px;
+                align-items: flex-start;
+                padding-top: 60px;
+            }
+            
+            .modal-content {
+                max-height: calc(100vh - 120px);
+                max-width: 95%;
+                padding: 20px;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                /* Performance optimization */
+                transform: translateY(20px);
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                opacity: 0;
+            }
+            
+            .modal-overlay.show-modal .modal-content {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .modal-title {
+                font-size: 1.6em;
+                margin-bottom: 15px;
+                padding-right: 40px;
+            }
+            
+            .modal-wrapper {
+                gap: 15px;
+            }
+            
+            .contact-form input,
+            .contact-form textarea {
+                padding: 12px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .share-options {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            
+            .share-icon {
+                padding: 10px 5px;
+                font-size: 1.3em;
+            }
+            
+            .share-icon span {
+                font-size: 0.55em;
+            }
+            
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Responsive tweaks for blog post */
+            .blog-post-container {
+                padding: 20px;
+            }
+            .blog-post-container h1 {
+                font-size: 2.5em;
+            }
+            .blog-body {
+                font-size: 1em;
+            }
+            .blog-body blockquote {
+                font-size: 1.2em;
+            }
+
+            /* NEW: Responsive rule for blog post footer */
+            .blog-post-footer {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+        }
+        
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .header-name {
+                font-size: 1.2em;
+            }
+            
+            .footer .email {
+                font-size: 1.3em;
+            }
+            
+            /* Mobile Modal Fixes */
+            .modal-content {
+                padding: 18px;
+                max-width: 92%;
+            }
+            
+            .modal-title {
+                font-size: 1.6em;
+                margin-bottom: 18px;
+            }
+            
+            .share-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Extra Small Mobile */
+        @media (max-width: 360px) {
+            .header-name {
+                font-size: 1.1em;
+            }
+        }
+        /* --- RESPONSIVE FIXES END --- */
+        
+        /* Animation Keyframes - Optimized */
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="wave-background"></div>
+
+    <header class="header">
+        <div class="header-left">
+            <div class="header-logo">
+                <img src="/Mauliksinh-Makwana/logo.png" alt="MAKWANA MAULIK Logo">
+            </div>
+            <span class="header-name">MAKWANA MAULIK</span>
+        </div>
+        
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link" id="nav-home">Home</a> 
+            <a href="/Mauliksinh-Makwana/resume.pdf" download class="nav-link" id="nav-resume">Resume</a>
+            <a href="/Mauliksinh-Makwana/blogcards.html" class="nav-link" id="blog-btn">Blog</a>
+            <a href="#" class="nav-link" id="contact-btn">Contact</a>
+            <a href="#" class="nav-link icon-btn" id="share-btn"><i class="fas fa-share-nodes"></i></a>
+            
+            <button class="menu-toggle" id="menu-toggle-btn" aria-label="Open menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="index.html" id="mobile-home"><i class="fas fa-home"></i> Home</a>
+            <a href="/Mauliksinh-Makwana/resume.pdf" download id="mobile-resume"><i class="fas fa-file-arrow-down"></i> Resume</a>
+            <a href="/Mauliksinh-Makwana/blogcards.html" id="mobile-blog"><i class="fas fa-newspaper"></i> Blog</a>
+            <a href="#" id="mobile-contact"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="#" id="mobile-share"><i class="fas fa-share-nodes"></i> Share</a>
+        </nav>
+    </header>
+
+
+
+    
+<!---------Artical----------------------------------------------------------------------------------------------------------------------------------------->
+    <main class="main-content">
+    <article class="blog-post-container">
+            <h1>The Great <span class="gradient-text">"Asset" Lie</span>: Are You Buying Things That Are Actually Making You Poorer?</h1>
+            <p class="blog-meta">By MAKWANA MAULIK • November 11, 2025 • 6 min read</p>
+            
+            <img src="https://placehold.co/800x400/1a1a1a/ffffff?text=Asset+vs+Liability" alt="A diagram showing assets vs. liabilities" class="blog-header-image">
+            
+            <div class="blog-body">
+                <p>From our first job, we're all given the same financial advice: "Go to school, get a good job, and buy assets." We're told that "assets" include our house, our car, and other valuable "stuff."</p>
+                
+                <p>But what if that's a lie? Not a malicious lie, but a misunderstanding that forms the bars of a financial cage. What if the very things we're told are "assets" are actually the "liabilities" keeping us working in jobs we don't love? This isn't about complex accounting; it's about one simple, powerful shift in definition.</p>
+                
+                <h2>The Simple Definitions They Don't Teach You</h2>
+                <p>Forget the complicated definitions you learned in school. For building personal wealth, there are only two definitions you need to know:</p>
+                
+                <ul>
+                    <li>An <strong>ASSET</strong> is something that <strong>puts money in your pocket</strong>.</li>
+                    <li>A <strong>LIABILITY</strong> is something that <strong>takes money out of your pocket</strong>.</li>
+                </ul>
+                
+                <p>That's it. Read those two lines again. This is the entire hidden system. An asset *feeds* you. A liability *eats* you.</p>
+
+                <h2>The Trap: Is Your House a Liability?</h2>
+                <p>This is where the idea gets controversial. By this simple, powerful definition, your family home is a liability. Why? Because every single month, it *takes money out of your pocket*. You pay for the mortgage, property taxes, insurance, repairs, and utilities. It doesn't *put* money in your pocket (unless you are renting it out, in which case it's a business).</p>
+                
+                <blockquote>
+                    "Rich people acquire assets. The poor and middle class acquire liabilities that they *think* are assets."
+                </blockquote>
+                
+                <p>The same goes for your car. The monthly payment, the insurance, the gas, the repairs... it's a giant liability. This is the "rat race" in action. People get a pay raise, so they buy a bigger house and a new car. Their expenses rise with their income. They are trapped, working to pay for "stuff" they were told were "assets," but which are actually just expensive liabilities.</p>
+                
+                <h2>Conclusion: How to Escape the Trap</h2>
+                <p>This isn't to say "don't buy a house" or "never own a car." The message is to <strong>understand the difference</strong> and <strong>buy assets first</strong>.</p>
+                
+                <p>The path to financial freedom is to use your income to buy true *assets*—things that *put money in your pocket* every month. This could be stocks that pay dividends, index funds, a rental property, or a business. You use the income from these real assets to pay for your liabilities.</p>
+                
+                <p>Don't be the person who spends their life buying liabilities. Be the person who buys assets that buy your liabilities for you. That is the one, simple secret to building real, lasting wealth.</p>
+            </div>
+
+            <div class="blog-post-footer">
+                <a href="/Mauliksinh-Makwana/blogcards.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="share-btn" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="share-btn" aria-label="Copy link"><i class="fas fa-link"></i></a>
+                </div>
+            </div>
+
+        </article>
+    </main>
+    <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
+    <footer class="footer" id="footer">
+        <div class="footer-left">
+            <div class="details">
+                <p>&copy; 2025 MAKWANA MAULIK. All rights reserved.</p>
+                <p>Designed with passion and precision.</p>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/mauliksinh" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/MR_MAULIKSINH" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/maulik_sinh_?igsh=MWxkbXFkaTFmOWg4bg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/mauliksinh24" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+        <a href="mailto:mauliksinhmakwana@gmail.com" class="email">mauliksinhmakwana@gmail.com</a>
+    </footer>
+    
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modal-close-contact">&times;</button>
+            <h3 class="modal-title">Get in Touch</h3>
+            
+            <div class="modal-wrapper">
+                
+                <div class="modal-contact-info">
+                    <ul style="list-style: none; padding: 0;">
+                        <li><i class="fas fa-envelope"></i><a href="mailto:mauliksinhmakwana@gmail.com">mauliksinhmakwana@gmail.com</a></li>
+                        <li><i class="fas fa-phone"></i> +91 84017 67705</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Anand, Gujarat, India</li>
+                    </ul>
+                </div>
+                
+                <form class="contact-form" action="https://formsubmit.co/mauliksinhmakwana@gmail.com" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first_name" placeholder="Your" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last_name" placeholder="Name" required>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group full-width" style="margin-top: 15px;">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
+                    </div>
+                    
+                    <input type="hidden" name="_next" value="https://your-domain.com/thanks.html">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="blog-modal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modal-close-blog">&times;</button>
+            <h3 class="modal-title">My Blog</h3>
+            
+            <div class="blog-container">
+                <div class="blog-card">
+                    <img src="https://placehold.co/600x400/1a1a1a/ffffff?text=Blog+Post+One" alt="Blog Post 1 Screenshot">
+                    <div class="blog-content">
+                        <h4>Blog Post Title One</h4>
+                        <p>A short description of your blog post, what it's about, and why it's interesting.</p>
+                        <a href="blog-post-1.html" class="btn btn-secondary">Read Post</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://placehold.co/600x400/1a1a1a/ffffff?text=Blog+Post+Two" alt="Blog Post 2 Screenshot">
+                    <div class="blog-content">
+                        <h4>Blog Post Title Two</h4>
+                        <p>A short description of your blog post, what it's about, and why it's interesting.</p>
+                        <a href="#" class="btn btn-secondary">Read Post</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://placehold.co/600x400/1a1a1a/ffffff?text=Blog+Post+Three" alt="Blog Post 3 Screenshot">
+                    <div class="blog-content">
+                        <h4>Blog Post Title Three</h4>
+                        <p>A short description of your blog post, what it's about, and why it's interesting.</p>
+                        <a href="#" class="btn btn-secondary">Read Post</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="modal-overlay" id="share-modal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modal-close-share">&times;</button>
+            <h3 class="modal-title">Share</h3>
+            
+            <div class="share-options">
+                <a href="#" class="share-icon" id="share-linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="share-icon" id="share-x">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <span>X</span>
+                </a>
+                <a href="#" class="share-icon" id="share-facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="#" class="share-icon" id="share-whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="#" class="share-icon" id="share-telegram">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+                <a href="#" class="share-icon" id="share-reddit">
+                    <i class="fab fa-reddit-alien"></i>
+                    <span>Reddit</span>
+                </a>
+                <a href="#" class="share-icon" id="share-email">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="share-icon" id="share-instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="#" class="share-icon" id="share-pinterest">
+                    <i class="fab fa-pinterest"></i>
+                    <span>Pinterest</span>
+                </a>
+                <a href="#" class="share-icon" id="share-tumblr">
+                    <i class="fab fa-tumblr"></i>
+                    <span>Tumblr</span>
+                </a>
+                <a href="#" class="share-icon" Jid="share-skype">
+                    <i class="fab fa-skype"></i>
+                    <span>Skype</span>
+                </a>
+                <a href="#" class="share-icon" id="share-snapchat">
+                    <i class="fab fa-snapchat"></i>
+                    <span>Snapchat</span>
+                </a>
+            </div>
+            
+            <button class="btn" id="copy-link-btn">
+                <span class="copy-text">
+                    <i class="fas fa-copy"></i> Copy Link
+                </span>
+                <span class="copied-text" style="display:none;">
+                    <i class="fas fa-check"></i> Copied!
+                </span>
+            </button>
+            
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        
+            // --- Modal Control Logic ---
+            const contactBtn = document.getElementById('contact-btn');
+            const contactModal = document.getElementById('contact-modal');
+            const closeContactBtn = document.getElementById('modal-close-contact');
+            
+            const shareBtn = document.getElementById('share-btn');
+            const shareModal = document.getElementById('share-modal');
+            const closeShareBtn = document.getElementById('modal-close-share');
+            
+            // Blog Modal
+            const blogBtn = document.getElementById('blog-btn');
+            const blogModal = document.getElementById('blog-modal');
+            const closeBlogBtn = document.getElementById('modal-close-blog');
+
+            // --- Mobile Menu ---
+            const menuToggleBtn = document.getElementById('menu-toggle-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileContact = document.getElementById('mobile-contact');
+            const mobileShare = document.getElementById('mobile-share');
+            const mobileBlog = document.getElementById('mobile-blog');
+
+            const openModal = (modal) => {
+                if (modal) {
+                    modal.classList.add('show-modal');
+                    // Prevent body scroll when modal is open
+                    document.body.style.overflow = 'hidden';
+                }
+            };
+
+            const closeModal = (modal) => {
+                if (modal) {
+                    modal.classList.remove('show-modal');
+                    // Restore body scroll
+                    document.body.style.overflow = '';
+                }
+            };
+
+            // Open/Close Mobile Menu
+            if (menuToggleBtn && mobileNav) {
+                menuToggleBtn.addEventListener('click', () => {
+                    mobileNav.classList.toggle('active');
+                });
+            }
+
+            // Contact Modal Listeners
+            if (contactBtn) {
+                contactBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(contactModal);
+                });
+            }
+            if (mobileContact) {
+                mobileContact.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    mobileNav.classList.remove('active'); // Close menu
+                    openModal(contactModal);
+                });
+            }
+            if (closeContactBtn) {
+                closeContactBtn.addEventListener('click', () => closeModal(contactModal));
+            }
+
+            // Share Modal Listeners
+            if (shareBtn) {
+                shareBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(shareModal);
+                });
+            }
+            if (mobileShare) {
+                mobileShare.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    mobileNav.classList.remove('active'); // Close menu
+                    openModal(shareModal);
+                });
+            }
+            if (closeShareBtn) {
+                closeShareBtn.addEventListener('click', () => closeModal(shareModal));
+            }
+
+
+            // Close modal by clicking overlay
+            [contactModal, shareModal, blogModal].forEach(modal => {
+                if (modal) {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            closeModal(modal);
+                        }
+                    });
+                }
+            });
+            
+            // --- Share Functionality (For MODAL) ---
+            // On a blog post page, you might want to share the post's specific URL
+            // This script shares the *current page's* URL.
+            const portfolioURL = window.location.href;
+            const portfolioTitle = document.title;
+            const shareText = `Check out ${portfolioTitle}!`;
+
+            // Copy Link
+            const copyBtn = document.getElementById('copy-link-btn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(portfolioURL).then(() => {
+                        copyBtn.querySelector('.copy-text').style.display = 'none';
+                        copyBtn.querySelector('.copied-text').style.display = 'inline-block';
+                        copyBtn.classList.add('copied');
+                        
+                        setTimeout(() => {
+                            copyBtn.querySelector('.copy-text').style.display = 'inline-block';
+                            copyBtn.querySelector('.copied-text').style.display = 'none';
+                            copyBtn.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+                });
+            }
+
+            // Social Share Links (For MODAL)
+            document.getElementById('share-linkedin').href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(portfolioURL)}`;
+            document.getElementById('share-linkedin').target = '_blank';
+
+            document.getElementById('share-x').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(portfolioURL)}&text=${encodeURIComponent(shareText)}`;
+            document.getElementById('share-x').target = '_blank';
+
+            document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(portfolioURL)}`;
+            document.getElementById('share-facebook').target = '_blank';
+            
+            document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + portfolioURL)}`;
+            document.getElementById('share-whatsapp').target = '_blank';
+
+            document.getElementById('share-email').href = `mailto:?subject=${encodeURIComponent(shareText)}&body=${encodeURIComponent('Check out this portfolio: ' + portfolioURL)}`;
+            
+            document.getElementById('share-reddit').href = `https://reddit.com/submit?url=${encodeURIComponent(portfolioURL)}&title=${encodeURIComponent(shareText)}`;
+            document.getElementById('share-reddit').target = '_blank';
+
+            document.getElementById('share-telegram').href = `https://t.me/share/url?url=${encodeURIComponent(portfolioURL)}&text=${encodeURIComponent(shareText)}`;
+            document.getElementById('share-telegram').target = '_blank';
+            
+            document.getElementById('share-pinterest').href = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(portfolioURL)}&description=${encodeURIComponent(shareText)}`;
+            document.getElementById('share-pinterest').target = '_blank';
+            
+            document.getElementById('share-tumblr').href = `https://www.tumblr.com/widgets/share/tool?posttype=link&canonicalUrl=${encodeURIComponent(portfolioURL)}&title=${encodeURIComponent(shareText)}`;
+            document.getElementById('share-tumblr').target = '_blank';
+            
+            document.getElementById('share-skype').href = `https::/web.skype.com/share?url=${encodeURIComponent(portfolioURL)}&text=${encodeURIComponent(shareText)}`;
+            document.getElementById('share-skype').target = '_blank';
+            
+            document.getElementById('share-snapchat').href = `https://www.snapchat.com/share?url=${encodeURIComponent(portfolioURL)}`;
+            document.getElementById('share-snapchat').target = '_blank';
+            
+
+            // --- NEW: In-Post Share Functionality (Inspired by Code 2) ---
+            const inPostShareButtons = document.querySelectorAll('.blog-post-footer .share-btn');
+            
+            inPostShareButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Get URL from the current window
+                    const currentUrl = window.location.href;
+                    
+                    // Get title from the H1 tag in the container, or fall back to document title
+                    const postTitle = document.querySelector('.blog-post-container h1')?.textContent || document.title;
+                    
+                    if (button.querySelector('.fa-x-twitter')) {
+                        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(postTitle)}`, '_blank');
+                    } else if (button.querySelector('.fa-linkedin-in')) {
+                        // Use the correct modern LinkedIn share URL
+                        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`, '_blank');
+                    } else if (button.querySelector('.fa-link')) {
+                        navigator.clipboard.writeText(currentUrl).then(() => {
+                            const originalHTML = button.innerHTML;
+                            button.innerHTML = '<i class="fas fa-check"></i>';
+                            button.style.color = '#28a745'; // Make checkmark green
+                            setTimeout(() => { 
+                                button.innerHTML = originalHTML; 
+                                button.style.color = ''; // Reset color
+                            }, 2000);
+                        }).catch(err => console.error('Failed to copy link:', err));
+                    }
+                });
+            });
+
+
+            // --- LinkedIn Profile Share Button (This is from the original file, it is not used here) ---
+            const shareLinkedInBtn = document.getElementById('share-linkedin-btn');
+            if (shareLinkedInBtn) {
+                shareLinkedInBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const linkedInURL = 'https://www.linkedin.com/in/mauliksinh'; // Your actual LinkedIn URL
+                    
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Makwana Maulik - LinkedIn Profile',
+                            text: 'Check out Makwana Maulik\'s profile on LinkedIn.',
+                            url: linkedInURL
+                        }).catch(err => console.error('Error sharing LinkedIn:', err));
+                    } else {
+                        // Fallback for desktop
+                        alert('This feature uses your device\'s native share. Please copy the link manually.');
+                    }
+                });
+            }
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (mobileNav.classList.contains('active') && 
+                    !mobileNav.contains(e.target) && 
+                    !menuToggleBtn.contains(e.target)) {
+                    mobileNav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

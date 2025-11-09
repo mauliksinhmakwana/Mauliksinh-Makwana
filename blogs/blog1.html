@@ -742,6 +742,55 @@
             border-bottom: 1px solid var(--accent-solid);
         }
 
+        /* --- NEW: Blog Post Footer (Inspired by Code 2) --- */
+        .blog-post-footer {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-to-blog {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95em;
+        }
+
+        .back-to-blog:hover {
+            color: var(--accent-solid);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .share-btn:hover {
+            background: var(--accent-solid);
+            color: var(--primary-bg);
+            transform: translateY(-2px);
+        }
+
 
         /* --- RESPONSIVE FIXES START --- */
         
@@ -934,6 +983,13 @@
             .blog-body blockquote {
                 font-size: 1.2em;
             }
+
+            /* NEW: Responsive rule for blog post footer */
+            .blog-post-footer {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
         }
         
         /* Small Mobile */
@@ -1016,7 +1072,75 @@
         </nav>
     </header>
 
-  
+
+
+    
+<!---------Artical----------------------------------------------------------------------------------------------------------------------------------------->
+    <main class="main-content">
+       <article class="blog-post-container">
+            <h1>Are We the Product? <span class="gradient-text">My Takeaways from "The Social Dilemma"</span></h1>
+            <p class="blog-meta">By MAKWANA MAULIK • November 09, 2025 • 6 min read</p>
+            
+            <img src="https://placehold.co/800x400/1a1a1a/ffffff?text=The+Attention+Economy" alt="The Social Dilemma concept" class="blog-header-image">
+            
+            <div class="blog-body">
+                <p>When was the last time you picked up your phone just to check one notification, only to look up 45 minutes later, wondering where the time went? We've all been there. The Netflix documentary "The Social Dilemma" finally gives this feeling a name and a face, explaining *why* these apps are so hard to put down.</p>
+                
+                <p>It's not a failure of our self-control. It's a feature of their design. After watching it, I'm forced to rethink my relationship with the technology I use every day. Here are my main takeaways.</p>
+                
+                <h2>The Business Model: "You Are the Product"</h2>
+                <p>This was the film's "Aha!" moment for me. We're taught to see social media as a free tool. But the film's experts, many of whom built these systems, are clear: if you are not paying for the product, then you *are* the product.</p>
+                
+                <blockquote>
+                    "There are only two industries that call their customers 'users': illegal drugs and software."
+                    - Edward Tufte
+                </blockquote>
+                
+                <p>The real customers are the advertisers. And the product being sold is <strong>us</strong>. More specifically, it’s our attention and the "gradual, slight, imperceptible change in our own behavior and perception." These companies make money by becoming masters at predicting and influencing what we will do next.</p>
+                
+                <h2>The Psychological "Hack"</h2>
+                <p>So, how do they keep our attention? By design. The film features Tristan Harris, a former Google design ethicist, who explains how our phones are like slot machines. Every "pull-to-refresh" is a gamble, every notification is a potential reward. These platforms tap directly into our brain's dopamine reward system.</p>
+                
+                <p>Justin Rosenstein, the inventor of the Facebook "Like" button, even admits they were chasing "positive reinforcement" but created a system that taps into our basic human need for social validation—and then monetizes it.</p>
+                
+                <h2>The Societal Consequences</h2>
+                <p>This isn't just a personal problem; the film argues it's a global one. When an algorithm's only goal is to maximize "engagement," it doesn't care about the truth or our well-being. It only cares about what will keep us scrolling.</p>
+                
+                <h3>Key Dangers Highlighted:</h3>
+                <ul>
+                    <li><strong>The Spread of Misinformation:</strong> A study cited in the film found that fake news on Twitter spreads <strong>6 times faster</strong> than true news. Why? Because it's often more shocking, emotional, and engaging.</li>
+                    <li><strong>Filter Bubbles & Polarization:</strong> The algorithm shows us content it *knows* we will "like." This means we stop seeing opposing viewpoints, and our own beliefs are amplified, pushing society into more extreme, polarized "echo chambers."</li>
+                    <li><strong>Mental Health Crisis:</strong> The film draws a terrifying connection between the rise of social media and the sharp increase in depression, anxiety, and self-harm rates, especially among teenagers.</li>
+                </ul>
+                
+                <h2>Conclusion: Regaining Control</h2>
+                <p>So, am I deleting all my social media? No. But I'm no longer a passive "user." The documentary's main message isn't that technology is inherently evil, but that its current business model is incompatible with a healthy society.</p>
+                
+                <p>It's on us to be conscious of the design and demand better. For my part, I'm starting small:</p>
+                <ol>
+                     <li><strong>Turning off all non-essential notifications.</strong> If it's important, someone can text or call.</li>
+                     <li><strong>Setting time limits</strong> on the apps I use for "endless scrolling."</li>
+                     <li><strong>Actively seeking out</strong> articles and people with different viewpoints to escape my filter bubble.</li>
+                </ol>
+                <p>It's time to control our technology, not let it control us. What's one change you'll make?</p>
+            </div>
+
+            <div class="blog-post-footer">
+                <a href="/Mauliksinh-Makwana/blogcards.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="share-btn" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="share-btn" aria-label="Copy link"><i class="fas fa-link"></i></a>
+                </div>
+            </div>
+
+        </article>
+    </main>
+    <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
     <footer class="footer" id="footer">
         <div class="footer-left">
             <div class="details">
@@ -1273,7 +1397,7 @@
                 }
             });
             
-            // --- Share Functionality ---
+            // --- Share Functionality (For MODAL) ---
             // On a blog post page, you might want to share the post's specific URL
             // This script shares the *current page's* URL.
             const portfolioURL = window.location.href;
@@ -1300,7 +1424,7 @@
                 });
             }
 
-            // Social Share Links
+            // Social Share Links (For MODAL)
             document.getElementById('share-linkedin').href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(portfolioURL)}`;
             document.getElementById('share-linkedin').target = '_blank';
 
@@ -1327,12 +1451,46 @@
             document.getElementById('share-tumblr').href = `https://www.tumblr.com/widgets/share/tool?posttype=link&canonicalUrl=${encodeURIComponent(portfolioURL)}&title=${encodeURIComponent(shareText)}`;
             document.getElementById('share-tumblr').target = '_blank';
             
-            document.getElementById('share-skype').href = `https://web.skype.com/share?url=${encodeURIComponent(portfolioURL)}&text=${encodeURIComponent(shareText)}`;
+            document.getElementById('share-skype').href = `https::/web.skype.com/share?url=${encodeURIComponent(portfolioURL)}&text=${encodeURIComponent(shareText)}`;
             document.getElementById('share-skype').target = '_blank';
             
             document.getElementById('share-snapchat').href = `https://www.snapchat.com/share?url=${encodeURIComponent(portfolioURL)}`;
             document.getElementById('share-snapchat').target = '_blank';
             
+
+            // --- NEW: In-Post Share Functionality (Inspired by Code 2) ---
+            const inPostShareButtons = document.querySelectorAll('.blog-post-footer .share-btn');
+            
+            inPostShareButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Get URL from the current window
+                    const currentUrl = window.location.href;
+                    
+                    // Get title from the H1 tag in the container, or fall back to document title
+                    const postTitle = document.querySelector('.blog-post-container h1')?.textContent || document.title;
+                    
+                    if (button.querySelector('.fa-x-twitter')) {
+                        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(postTitle)}`, '_blank');
+                    } else if (button.querySelector('.fa-linkedin-in')) {
+                        // Use the correct modern LinkedIn share URL
+                        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`, '_blank');
+                    } else if (button.querySelector('.fa-link')) {
+                        navigator.clipboard.writeText(currentUrl).then(() => {
+                            const originalHTML = button.innerHTML;
+                            button.innerHTML = '<i class="fas fa-check"></i>';
+                            button.style.color = '#28a745'; // Make checkmark green
+                            setTimeout(() => { 
+                                button.innerHTML = originalHTML; 
+                                button.style.color = ''; // Reset color
+                            }, 2000);
+                        }).catch(err => console.error('Failed to copy link:', err));
+                    }
+                });
+            });
+
+
             // --- LinkedIn Profile Share Button (This is from the original file, it is not used here) ---
             const shareLinkedInBtn = document.getElementById('share-linkedin-btn');
             if (shareLinkedInBtn) {
